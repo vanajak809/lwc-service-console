@@ -1,0 +1,64 @@
+<template>
+    <lightning-card title="Case Search" icon-name="standard:case">
+        <div class="slds-var-p-horizontal_medium slds-is-relative">
+            <lightning-input
+                type="search"
+                label="Search cases"
+                placeholder="Case number, subject or customer name"
+                value={inputValue}
+                onchange={handleSearchInput}
+                field-level-help="Enter at least 2 characters"
+            ></lightning-input>
+
+            <template lwc:if={showHint}>
+                <p class="hint slds-text-body_small slds-text-color_weak slds-var-m-top_x-small">
+                    Type at least 2 characters to search.
+                </p>
+            </template>
+
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Searching cases" size="small"></lightning-spinner>
+            </template>
+
+            <template lwc:if={error}>
+                <c-error-panel errors={error} friendly-message="Case search failed. Please try again."></c-error-panel>
+            </template>
+
+            <p class="slds-assistive-text results-summary" aria-live="polite">{resultsSummary}</p>
+
+            <template lwc:if={hasResults}>
+                <ul
+                    class="results slds-has-dividers_bottom-space slds-var-m-top_small"
+                    aria-label="Case search results"
+                >
+                    <template for:each={cases} for:item="item">
+                        <li key={item.id} class="slds-item">
+                            <button
+                                class="slds-button result-button"
+                                data-case-id={item.id}
+                                data-account-id={item.accountId}
+                                aria-label={item.ariaLabel}
+                                onclick={handleSelect}
+                            >
+                                <span class="slds-grid slds-grid_vertical-align-center slds-gutters_x-small">
+                                    <span class="slds-col slds-text-title_bold case-number">{item.caseNumber}</span>
+                                    <span class="slds-col slds-truncate subject" title={item.subject}
+                                        >{item.subject}</span
+                                    >
+                                    <span class="slds-col slds-text-color_weak account">{item.accountLabel}</span>
+                                    <span class="slds-col slds-no-flex">
+                                        <span class={item.priorityClass}>{item.priority}</span>
+                                    </span>
+                                </span>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <template lwc:if={showNoResults}>
+                <p class="no-results slds-var-m-top_small slds-text-color_weak">No cases match your search.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

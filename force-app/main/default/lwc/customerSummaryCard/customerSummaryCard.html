@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title="Customer Summary" icon-name="standard:account">
+        <div class="slds-var-p-horizontal_medium slds-is-relative">
+            <template lwc:if={hasRecord}>
+                <template lwc:if={isLoading}>
+                    <lightning-spinner alternative-text="Loading customer summary" size="small"></lightning-spinner>
+                </template>
+                <template lwc:if={error}>
+                    <c-error-panel
+                        errors={error}
+                        friendly-message="The customer summary could not be loaded."
+                    ></c-error-panel>
+                </template>
+                <template lwc:if={showSummary}>
+                    <div class="slds-grid slds-grid_vertical-align-center slds-var-m-bottom_small">
+                        <h3 class="slds-text-heading_small slds-truncate customer-name" title={summary.name}>
+                            {summary.name}
+                        </h3>
+                        <span class="slds-var-m-left_small">
+                            <span class={tierClass} aria-label="Member tier">{tierLabel}</span>
+                        </span>
+                    </div>
+                    <template lwc:if={hasHighPriority}>
+                        <div
+                            class="slds-scoped-notification slds-theme_warning slds-var-m-bottom_small high-priority"
+                            role="status"
+                        >
+                            {highPriorityMessage}
+                        </div>
+                    </template>
+                    <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label">Member since</dt>
+                        <dd class="slds-dl_horizontal__detail member-since">
+                            <template lwc:if={summary.memberSince}>
+                                <lightning-formatted-date-time
+                                    value={summary.memberSince}
+                                    year="numeric"
+                                    month="short"
+                                    day="2-digit"
+                                    time-zone="UTC"
+                                ></lightning-formatted-date-time>
+                            </template>
+                            <template lwc:else>Not recorded</template>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">Open cases</dt>
+                        <dd class="slds-dl_horizontal__detail open-cases">{summary.openCases}</dd>
+                        <dt class="slds-dl_horizontal__label">Closed (last 90 days)</dt>
+                        <dd class="slds-dl_horizontal__detail closed-cases">{summary.closedLast90Days}</dd>
+                    </dl>
+                </template>
+            </template>
+            <template lwc:else>
+                <p class="placeholder slds-text-color_weak">Select a case to see the customer summary.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

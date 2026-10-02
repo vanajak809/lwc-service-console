@@ -1,0 +1,72 @@
+<template>
+    <lightning-card title="Case Timeline" icon-name="standard:timeslot">
+        <template lwc:if={hasCase}>
+            <lightning-button-icon
+                slot="actions"
+                class="refresh-button"
+                icon-name="utility:refresh"
+                alternative-text="Refresh timeline"
+                title="Refresh timeline"
+                disabled={isRefreshing}
+                onclick={handleRefresh}
+            ></lightning-button-icon>
+        </template>
+        <div class="slds-var-p-horizontal_medium slds-is-relative">
+            <template lwc:if={hasCase}>
+                <template lwc:if={isRefreshing}>
+                    <lightning-spinner alternative-text="Refreshing timeline" size="small"></lightning-spinner>
+                </template>
+                <template lwc:if={error}>
+                    <c-error-panel
+                        errors={error}
+                        friendly-message="The case timeline could not be loaded."
+                    ></c-error-panel>
+                </template>
+                <template lwc:if={hasEntries}>
+                    <ol class="timeline slds-list_vertical" aria-label="Case activity, newest first">
+                        <template for:each={entries} for:item="entry">
+                            <li
+                                key={entry.id}
+                                class="slds-var-p-vertical_x-small timeline-entry"
+                                data-type={entry.entryType}
+                            >
+                                <div class="slds-media">
+                                    <div class="slds-media__figure">
+                                        <lightning-icon
+                                            icon-name={entry.iconName}
+                                            size="small"
+                                            alternative-text={entry.entryType}
+                                        ></lightning-icon>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title_bold entry-title">{entry.title}</p>
+                                        <p class="slds-text-body_small slds-text-color_weak">
+                                            <lightning-formatted-date-time
+                                                value={entry.occurredAt}
+                                                year="numeric"
+                                                month="short"
+                                                day="2-digit"
+                                                hour="2-digit"
+                                                minute="2-digit"
+                                            ></lightning-formatted-date-time>
+                                            {entry.actorLabel}
+                                        </p>
+                                        <template lwc:if={entry.body}>
+                                            <p class="slds-var-m-top_xx-small entry-body">{entry.body}</p>
+                                        </template>
+                                    </div>
+                                </div>
+                            </li>
+                        </template>
+                    </ol>
+                </template>
+                <template lwc:if={showEmpty}>
+                    <p class="empty slds-text-color_weak">No activity recorded for this case yet.</p>
+                </template>
+            </template>
+            <template lwc:else>
+                <p class="placeholder slds-text-color_weak">Select a case to see its timeline.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

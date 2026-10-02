@@ -1,0 +1,16 @@
+{
+  "records": [
+    {
+      "attributes": { "type": "Account", "referenceId": "AccountRef1" },
+      "Name": "Synthetic Harbor Member",
+      "Member_Tier__c": "Premier",
+      "Member_Since__c": "2019-04-01"
+    },
+    {
+      "attributes": { "type": "Account", "referenceId": "AccountRef2" },
+      "Name": "Synthetic Meadow Clinic Patient Group",
+      "Member_Tier__c": "Standard",
+      "Member_Since__c": "2022-09-15"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "lwc-service-console",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Lightning Web Components for a service agent console with Jest tests (synthetic data).",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint \"force-app/**/lwc/**/*.js\"",
+    "test": "npm run test:unit",
+    "test:unit": "sfdx-lwc-jest",
+    "test:unit:watch": "sfdx-lwc-jest --watch",
+    "test:unit:coverage": "sfdx-lwc-jest --coverage",
+    "prettier": "prettier --write \"force-app/**/*.{cls,trigger,js,html,css,xml}\" \"{config,data}/**/*.json\" \"*.{js,json}\"",
+    "prettier:verify": "prettier --check \"force-app/**/*.{cls,trigger,js,html,css,xml}\" \"{config,data}/**/*.json\" \"*.{js,json}\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@lwc/eslint-plugin-lwc": "^3.5.0",
+    "@prettier/plugin-xml": "^3.4.2",
+    "@sa11y/jest": "^8.1.1",
+    "@salesforce/eslint-config-lwc": "^4.1.2",
+    "@salesforce/eslint-plugin-lightning": "^2.0.0",
+    "@salesforce/sfdx-lwc-jest": "^7.9.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.0.0",
+    "globals": "^15.0.0",
+    "prettier": "^3.9.9",
+    "prettier-plugin-apex": "^2.3.0"
+  }
+}

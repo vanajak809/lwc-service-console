@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "attributes": { "type": "Case", "referenceId": "CaseRef1" },
+      "AccountId": "@AccountRef1",
+      "Subject": "Synthetic card dispute - duplicate charge",
+      "Status": "New",
+      "Priority": "High",
+      "Origin": "Web"
+    },
+    {
+      "attributes": { "type": "Case", "referenceId": "CaseRef2" },
+      "AccountId": "@AccountRef1",
+      "Subject": "Synthetic address update request",
+      "Status": "Working",
+      "Priority": "Low",
+      "Origin": "Phone"
+    },
+    {
+      "attributes": { "type": "Case", "referenceId": "CaseRef3" },
+      "AccountId": "@AccountRef2",
+      "Subject": "Synthetic appointment reschedule question",
+      "Status": "New",
+      "Priority": "Medium",
+      "Origin": "Email"
+    }
+  ]
+}

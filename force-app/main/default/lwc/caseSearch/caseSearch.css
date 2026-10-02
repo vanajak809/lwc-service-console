@@ -1,0 +1,11 @@
+.result-button {
+    width: 100%;
+    text-align: left;
+    padding: var(--slds-g-spacing-2, var(--lwc-spacingXSmall, 0.5rem)) 0;
+}
+
+.result-button:focus-visible {
+    outline: var(--slds-g-sizing-border-2, 2px) solid
+        var(--slds-g-color-accent-container-1, var(--lwc-brandAccessible, #0176d3));
+    outline-offset: var(--slds-g-sizing-border-2, 2px);
+}

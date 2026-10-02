@@ -1,0 +1,11 @@
+{
+  "orgName": "Service Console Demo",
+  "edition": "Developer",
+  "hasSampleData": false,
+  "features": [],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    }
+  }
+}

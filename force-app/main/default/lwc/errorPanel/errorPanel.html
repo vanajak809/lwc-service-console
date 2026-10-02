@@ -1,0 +1,34 @@
+<template>
+    <div class="slds-scoped-notification slds-theme_error slds-var-m-vertical_small" role="alert">
+        <div class="slds-media slds-media_center">
+            <div class="slds-media__figure">
+                <lightning-icon
+                    icon-name="utility:error"
+                    alternative-text="Error"
+                    size="x-small"
+                    variant="inverse"
+                ></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+                <p class="friendly-message">{friendlyMessage}</p>
+                <template lwc:if={hasDetails}>
+                    <button
+                        class="slds-button slds-text-color_inverse toggle-details"
+                        aria-expanded={ariaExpanded}
+                        aria-controls="error-details"
+                        onclick={handleToggle}
+                    >
+                        {toggleLabel}
+                    </button>
+                    <template lwc:if={showDetails}>
+                        <ul id="error-details" class="slds-list_dotted details">
+                            <template for:each={messages} for:item="message">
+                                <li key={message}>{message}</li>
+                            </template>
+                        </ul>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

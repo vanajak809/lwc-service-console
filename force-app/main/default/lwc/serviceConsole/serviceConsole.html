@@ -1,0 +1,13 @@
+<template>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" large-device-size="5" padding="around-small">
+            <c-case-search oncaseselect={handleCaseSelect}></c-case-search>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" large-device-size="7" padding="around-small">
+            <c-customer-summary-card record-id={selectedAccountId}></c-customer-summary-card>
+            <div class="slds-var-m-top_small">
+                <c-case-timeline case-id={selectedCaseId}></c-case-timeline>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
